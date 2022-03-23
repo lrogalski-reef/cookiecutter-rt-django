@@ -1,0 +1,19 @@
+#cloud-config
+
+packages:
+  - docker.io
+
+# create the docker group
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [docker]
+
+runcmd:
+  - chown -R ubuntu:ubuntu /home/ubuntu
+  - export HOME=/home/ubuntu
+  - cd /home/ubuntu/
+  - sudo -u ubuntu aws ecr get-login-password --region "$AWS_LOGIN" | sudo -u ubuntu docker login --username AWS --password-stdin $AWS_ECR_BASE_URL
+  - sudo -u ubuntu docker-compose up -d

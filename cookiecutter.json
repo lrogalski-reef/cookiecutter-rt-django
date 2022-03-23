@@ -1,7 +1,7 @@
 {
     "repostory_name": "project",
     "project_short_description": "I am lazy and haven't written any project description",
-    "django_project_name": "project",
+    "django_project_name": "{{ cookiecutter.repostory_name }}",
     "django_default_app_name": "core",
     "monitoring": "y",
     "monitor_view_execution_time_in_djagno": "y",
@@ -28,5 +28,14 @@
     "csp_exclude_url_prefixes": "",
     "nginx_redirect_www_prefix": "y",
     "nginx_compression_enabled": "n",
-    "use_alpine_linux": "n"
+    "use_alpine_linux": "n",
+    "aws_project_name": "{{ cookiecutter.repostory_name }}",
+    "aws_infra_bucket": "{{ cookiecutter.aws_project_name }}-{{ random_ascii_string(6)|lower }}",
+    "aws_region": "us-east-1",
+    "aws_ami_image": "docker-optimized-*",
+    "aws_ami_image_owner": "self",
+    "aws_base_domain_name": "fake-domain.com",
+    "aws_domain_name": "admin.{{ cookiecutter.aws_base_domain_name }}",
+    "aws_staging_domain_name": "staging.{{ cookiecutter.aws_domain_name }}",
+    "aws_ec2_ssh_key": ""
 }
